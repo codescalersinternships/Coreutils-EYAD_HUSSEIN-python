@@ -23,7 +23,7 @@ Coreutils-EYAD_HUSSEIN is a collection of Unix-like command line utilities imple
 ```
 
 - **src/**: Source directory for the project.
-- **src/Coreutils-EYAD_HUSSEIN/**: Holds commands files.
+- **src/Coreutils-EYAD_HUSSEIN-python/**: Holds commands files.
 
 ## Commands Implemented
 

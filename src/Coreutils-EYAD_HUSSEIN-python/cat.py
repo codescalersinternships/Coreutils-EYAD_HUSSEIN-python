@@ -1,7 +1,17 @@
+"""Cat command implementation in python."""
+
 import argparse
 
 
 def cat() -> None:
+    """Concatenate files and print on the standard output.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         "cat", description="Concatenate files and print on the standard output"
     )
@@ -11,9 +21,9 @@ def cat() -> None:
     )
     args = parser.parse_args()
 
-    i = 1
+    i: int = 1
     for file in args.files:
-        with open(file) as f:
+        with open(file, encoding="utf-8") as f:
             for line in f:
                 if args.n:
                     print(f"{i} {line}", end="")

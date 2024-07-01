@@ -1,7 +1,17 @@
+"""Tail command implementation in python."""
+
 import argparse
 
 
 def tail() -> None:
+    """Print the last n lines of each file to standard output
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         "tail", description="Print the last n lines of each file to standard output"
     )
@@ -12,7 +22,7 @@ def tail() -> None:
     args = parser.parse_args()
 
     for file in args.files:
-        with open(file) as f:
+        with open(file, encoding="utf-8") as f:
             if len(args.files) > 1:
                 print(f"\n==> {file} <==")
             lines = f.readlines()

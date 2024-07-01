@@ -1,7 +1,17 @@
+"""Echo command implementation in python."""
+
 import argparse
 
 
 def echo() -> None:
+    """Outputs input string to standard output.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         "echo", description="Prints the given strings to the standard output"
     )

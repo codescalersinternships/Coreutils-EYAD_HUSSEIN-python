@@ -1,7 +1,17 @@
+"""Head command implementation in python."""
+
 import argparse
 
 
 def head() -> None:
+    """Print the first n lines of each file to standard output
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         "head", description="Print the first n lines of each file to standard output"
     )
@@ -12,7 +22,7 @@ def head() -> None:
     args = parser.parse_args()
 
     for file in args.files:
-        with open(file) as f:
+        with open(file, encoding="utf-8") as f:
             if len(args.files) > 1:
                 print(f"\n==> {file} <==")
             for i, line in enumerate(f, start=1):

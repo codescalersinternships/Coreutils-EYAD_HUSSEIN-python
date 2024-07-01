@@ -1,10 +1,22 @@
+"""Wc command implementation in python."""
+
 import argparse
 
 
 def wc() -> None:
+    """Print newline, word, and byte counts for each file and a total line
+    if more than one FILE is specified
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         "wc",
-        description="Print newline, word, and byte counts for each file and a total line if more than one FILE is specified",
+        description="""Print newline, word, and byte counts for each file and a total line if
+        more than one FILE is specified""",
     )
     parser.add_argument("files", nargs="+", help="The files to count")
     parser.add_argument("-c", action="store_true", help="Print the byte counts")
@@ -20,7 +32,7 @@ def wc() -> None:
     total_chars = 0
 
     for file in args.files:
-        with open(file) as f:
+        with open(file, encoding="utf-8") as f:
             lines = f.readlines()
             words = sum(len(line.split()) for line in lines)
             chars = sum(len(line.encode()) for line in lines)

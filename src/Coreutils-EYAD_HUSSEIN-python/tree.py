@@ -1,8 +1,18 @@
+"""Tree command implementation in python."""
+
 import argparse
 import os
 
 
 def tree() -> None:
+    """Print the directory tree structure
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(description="Print the directory tree structure")
     parser.add_argument(
         "-L", type=int, default=-1, help="Descend only level directories deep"
@@ -18,7 +28,17 @@ def tree() -> None:
             print()
 
 
-def print_listing(entry, depth, max_depth):
+def print_listing(entry, depth, max_depth) -> None:
+    """Print the directory listing
+
+    Args:
+        entry: The entry to be printed
+        depth: The depth of the entry
+        max_depth: The maximum depth to be printed
+
+    Returns:
+        None
+    """
     if max_depth != -1 and depth > max_depth:
         return
 
@@ -31,7 +51,17 @@ def print_listing(entry, depth, max_depth):
         print(f"{indent}|-- {entry_name}")
 
 
-def print_directory(path, depth, max_depth):
+def print_directory(path, depth, max_depth) -> None:
+    """Print the first n lines of each file to standard output
+
+    Args:
+        path: The path of the directory
+        depth: The depth of the directory
+        max_depth: The maximum depth to be printed
+
+    Returns:
+        None
+    """
     if max_depth != -1 and depth > max_depth:
         return
 

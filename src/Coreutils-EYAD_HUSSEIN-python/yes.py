@@ -1,7 +1,17 @@
+"""Yes command implementation in python."""
+
 import argparse
 
 
 def yes() -> None:
+    """Repeatedly print a line with all specified STRING(s), or 'y'.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         "yes",
         description="Repeatedly print a line with all specified STRING(s), or 'y'.",
