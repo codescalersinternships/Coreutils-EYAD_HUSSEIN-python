@@ -12,8 +12,9 @@ def env() -> None:
     Returns:
         None
     """
-    print(os.environ)
-    return 0
+    envs = os.environ
+    for key, value in envs.items():
+        print(f"{key}={value}")
 
 
 if __name__ == "__main__":
