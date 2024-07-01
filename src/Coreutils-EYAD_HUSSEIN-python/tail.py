@@ -1,7 +1,7 @@
 import argparse
 
 
-def tail():
+def tail() -> None:
     parser = argparse.ArgumentParser(
         "tail", description="Print the last n lines of each file to standard output"
     )
