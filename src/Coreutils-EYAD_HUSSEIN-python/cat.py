@@ -21,15 +21,24 @@ def cat() -> None:
     )
     args = parser.parse_args()
 
-    i: int = 1
+    line_number: int = 1
     for file in args.files:
-        with open(file, encoding="utf-8") as f:
-            for line in f:
-                if args.n:
-                    print(f"{i} {line}", end="")
-                else:
-                    print(line, end="")
-                i += 1
+        try:
+            with open(file, encoding="utf-8") as f:
+                for line in f:
+                    if args.n:
+                        print(f"{line_number} {line}", end="")
+                    else:
+                        print(line, end="")
+                    line_number += 1
+        except FileNotFoundError:
+            print(f"file '{file}' not found.")
+        except PermissionError:
+            print(f"permission denied for file'{file}'")
+        except IOError as e:
+            print(f"{e} error opening file '{file}'")
+        except Exception as e:
+            print(f"{e} occurred while reading file '{file}'")
 
 
 if __name__ == "__main__":

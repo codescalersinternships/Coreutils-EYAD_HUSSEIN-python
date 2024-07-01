@@ -22,12 +22,21 @@ def tail() -> None:
     args = parser.parse_args()
 
     for file in args.files:
-        with open(file, encoding="utf-8") as f:
-            if len(args.files) > 1:
-                print(f"\n==> {file} <==")
-            lines = f.readlines()
-            for line in lines[-args.n :]:
-                print(line, end="")
+        try:
+            with open(file, encoding="utf-8") as f:
+                if len(args.files) > 1:
+                    print(f"\n==> {file} <==")
+                lines = f.readlines()
+                for line in lines[-args.n :]:
+                    print(line, end="")
+        except FileNotFoundError:
+            print(f"file '{file}' not found.")
+        except PermissionError:
+            print(f"permission denied for file '{file}'.")
+        except IOError as e:
+            print(f"{e} error opening file '{file}'.")
+        except Exception as e:
+            print(f"{e} occurred while reading file '{file}'.")
 
 
 if __name__ == "__main__":

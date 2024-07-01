@@ -32,22 +32,31 @@ def wc() -> None:
     total_chars = 0
 
     for file in args.files:
-        with open(file, encoding="utf-8") as f:
-            lines = f.readlines()
-            words = sum(len(line.split()) for line in lines)
-            chars = sum(len(line.encode()) for line in lines)
+        try:
+            with open(file, encoding="utf-8") as f:
+                lines = f.readlines()
+                words = sum(len(line.split()) for line in lines)
+                chars = sum(len(line.encode()) for line in lines)
 
-            if args.l:
-                print(len(lines), end=" ")
-            if args.w:
-                print(words, end=" ")
-            if args.c:
-                print(chars, end=" ")
-            print(file)
+                if args.l:
+                    print(len(lines), end=" ")
+                if args.w:
+                    print(words, end=" ")
+                if args.c:
+                    print(chars, end=" ")
+                print(file)
 
-            total_lines += len(lines)
-            total_words += words
-            total_chars += chars
+                total_lines += len(lines)
+                total_words += words
+                total_chars += chars
+        except FileNotFoundError:
+            print(f"file '{file}' not found.")
+        except PermissionError:
+            print(f"permission denied for file '{file}'.")
+        except IOError as e:
+            print(f"{e} error opening file '{file}'.")
+        except Exception as e:
+            print(f"{e} occurred while reading file '{file}'.")
 
     if len(args.files) > 1:
         if args.l:
